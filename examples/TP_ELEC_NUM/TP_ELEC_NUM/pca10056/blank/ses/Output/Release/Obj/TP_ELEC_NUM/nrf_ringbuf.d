@@ -1,6 +1,6 @@
 Output/Release/Obj/TP_ELEC_NUM/nrf_ringbuf.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\ringbuf\nrf_ringbuf.c \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\ringbuf\nrf_ringbuf.h \
+ C:\Users\simon\Desktop\nordic\components\libraries\ringbuf\nrf_ringbuf.c \
+ C:\Users\simon\Desktop\nordic\components\libraries\ringbuf\nrf_ringbuf.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
  ../../../../../../components/libraries/atomic/nrf_atomic.h \
  ../../../../../../components/libraries/util/sdk_common.h \

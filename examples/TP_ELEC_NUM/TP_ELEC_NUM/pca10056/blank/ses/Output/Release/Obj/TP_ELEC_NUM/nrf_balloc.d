@@ -1,5 +1,5 @@
 Output/Release/Obj/TP_ELEC_NUM/nrf_balloc.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\balloc\nrf_balloc.c \
+ C:\Users\simon\Desktop\nordic\components\libraries\balloc\nrf_balloc.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \
@@ -29,7 +29,7 @@ Output/Release/Obj/TP_ELEC_NUM/nrf_balloc.o: \
  ../../../../../../components/libraries/util/nrf_assert.h \
  ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
  ../../../../../../components/libraries/util/nordic_common.h \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\balloc\nrf_balloc.h \
+ C:\Users\simon\Desktop\nordic\components\libraries\balloc\nrf_balloc.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/app_util_platform.h \
  ../../../../../../components/libraries/util/app_error.h \

@@ -1,5 +1,5 @@
 Output/Release/Obj/TP_ELEC_NUM/nrf_fprintf.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\external\fprintf\nrf_fprintf.c \
+ C:\Users\simon\Desktop\nordic\external\fprintf\nrf_fprintf.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \
@@ -29,5 +29,5 @@ Output/Release/Obj/TP_ELEC_NUM/nrf_fprintf.o: \
  ../../../../../../components/libraries/util/nrf_assert.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdarg.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\external\fprintf\nrf_fprintf_format.h \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\external\fprintf\nrf_fprintf.h
+ C:\Users\simon\Desktop\nordic\external\fprintf\nrf_fprintf_format.h \
+ C:\Users\simon\Desktop\nordic\external\fprintf\nrf_fprintf.h

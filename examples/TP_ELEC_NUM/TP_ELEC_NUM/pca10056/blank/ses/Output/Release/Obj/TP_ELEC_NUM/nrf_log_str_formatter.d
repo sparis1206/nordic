@@ -1,5 +1,5 @@
 Output/Release/Obj/TP_ELEC_NUM/nrf_log_str_formatter.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\log\src\nrf_log_str_formatter.c \
+ C:\Users\simon\Desktop\nordic\components\libraries\log\src\nrf_log_str_formatter.c \
  ../../../../../../components/libraries/util/sdk_common.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \

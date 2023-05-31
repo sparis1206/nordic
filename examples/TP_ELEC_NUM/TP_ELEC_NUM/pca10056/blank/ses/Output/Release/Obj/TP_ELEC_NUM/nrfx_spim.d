@@ -1,6 +1,5 @@
-Output/Release/Obj/TP_ELEC_NUM/nrfx_atomic.o: \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic.c \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic.h \
+Output/Release/Obj/TP_ELEC_NUM/nrfx_spim.o: \
+ C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\nrfx_spim.c \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
@@ -43,4 +42,19 @@ Output/Release/Obj/TP_ELEC_NUM/nrfx_atomic.o: \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
  ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic_internal.h
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spim.h \
+ ../../../../../../modules/nrfx/hal/nrf_spim.h \
+ C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\prs/nrfx_prs.h \
+ ../../../../../../modules/nrfx/hal/nrf_gpio.h \
+ ../../../../../../integration/nrfx/nrfx_log.h \
+ ../../../../../../components/libraries/log/nrf_log.h \
+ ../../../../../../components/libraries/util/sdk_common.h \
+ D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/string.h \
+ ../../../../../../components/libraries/util/sdk_os.h \
+ ../../../../../../components/libraries/util/app_util.h \
+ ../../../../../../components/libraries/util/sdk_macros.h \
+ ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
+ ../../../../../../components/libraries/log/src/nrf_log_internal.h \
+ ../../../../../../components/libraries/log/nrf_log_instance.h \
+ ../../../../../../components/libraries/log/nrf_log_types.h \
+ ../../../../../../components/libraries/log/nrf_log_types.h

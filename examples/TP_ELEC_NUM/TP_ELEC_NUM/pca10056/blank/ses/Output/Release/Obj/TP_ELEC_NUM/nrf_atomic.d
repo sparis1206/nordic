@@ -1,6 +1,6 @@
 Output/Release/Obj/TP_ELEC_NUM/nrf_atomic.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\atomic\nrf_atomic.c \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\atomic\nrf_atomic.h \
+ C:\Users\simon\Desktop\nordic\components\libraries\atomic\nrf_atomic.c \
+ C:\Users\simon\Desktop\nordic\components\libraries\atomic\nrf_atomic.h \
  ../../../../../../components/libraries/util/sdk_common.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \
@@ -28,4 +28,4 @@ Output/Release/Obj/TP_ELEC_NUM/nrf_atomic.o: \
  ../../../../../../modules/nrfx/mdk/compiler_abstraction.h \
  ../../../../../../components/libraries/util/sdk_macros.h \
  ../../../../../../components/libraries/util/nrf_assert.h \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\libraries\atomic\nrf_atomic_internal.h
+ C:\Users\simon\Desktop\nordic\components\libraries\atomic\nrf_atomic_internal.h

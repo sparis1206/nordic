@@ -50,8 +50,51 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include "nrf_gpio.h"
+#include "nrf_drv_spi.h"
 #include "nrf_delay.h"
 #include "boards.h"
+
+#define SPI_INSTANCE  0 /**< SPI instance index. */
+static const nrf_drv_spi_t spi = NRF_DRV_SPI_INSTANCE(SPI_INSTANCE);  /**< SPI instance. */
+static volatile bool spi_xfer_done;  /**< Flag used to indicate that SPI instance completed the transfer. */
+
+static uint8_t       m_tx_buf=0x03;    /**< TX buffer. */
+static uint8_t       m_rx_buf=0;    /**< RX buffer. */
+static const uint8_t m_length = sizeof(m_tx_buf);   /**< Transfer length. */
+
+void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
+                       void *                    p_context);
+void init_spi(void);
+
+/**
+ * @brief SPI user event handler.
+ * @param event
+ */
+void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
+                       void *                    p_context)
+{
+    spi_xfer_done = true;
+    printf("Transfer completed : %d\n", (int)m_tx_buf);
+    if (m_rx_buf != 0)
+    {
+        printf("Received: %d\n", (int)m_rx_buf);
+    }
+}
+void init_spi(void)
+{
+    /*init MISO MOSI SCK*/
+    nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
+    spi_config.ss_pin   = SPI_SS_PIN;
+    spi_config.miso_pin = SPI_MISO_PIN;
+    spi_config.mosi_pin = SPI_MOSI_PIN;
+    spi_config.sck_pin  = SPI_SCK_PIN;
+    spi_config.frequency = NRF_DRV_SPI_FREQ_125K;
+    spi_config.mode = NRF_DRV_SPI_MODE_1;
+
+    ret_code_t err_code = nrf_drv_spi_init(&spi, &spi_config, spi_event_handler, NULL);
+    APP_ERROR_CHECK(err_code);
+}
 
 /**
  * @brief Function for application main entry.
@@ -60,13 +103,24 @@ int main(void)
 {
     /* Configure board. */
     nrf_gpio_cfg_output(13);
-    //nrf_gpio_pin_dir_set(13,NRF_GPIO_PIN_DIR_OUTPUT);
     printf("BLINKAGE DE LED WOW\n");
+    init_spi();
+    printf("CONFIG SPI.");
     /* Toggle LEDs. */
     while (true)
     {
-        nrf_gpio_pin_toggle(13);
-        nrf_delay_ms(500);
+        // Reset rx buffer and transfer done flag
+        m_rx_buf=0;
+        spi_xfer_done = false;
+
+        ret_code_t err_code = nrf_drv_spi_transfer(&spi, &m_tx_buf, 1, &m_rx_buf, 1);
+        APP_ERROR_CHECK(err_code);
+
+        while (!spi_xfer_done)
+        {
+            __WFE();
+        }
+        nrf_delay_ms(10);
     }
 }
 

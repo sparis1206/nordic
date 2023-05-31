@@ -1,6 +1,6 @@
 Output/Release/Obj/TP_ELEC_NUM/boards.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\boards\boards.c \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\boards\boards.h \
+ C:\Users\simon\Desktop\nordic\components\boards\boards.c \
+ C:\Users\simon\Desktop\nordic\components\boards\boards.h \
  ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
@@ -44,4 +44,4 @@ Output/Release/Obj/TP_ELEC_NUM/boards.o: \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
  ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\components\boards\pca10056.h
+ C:\Users\simon\Desktop\nordic\components\boards\pca10056.h

@@ -1,13 +1,14 @@
-Output/Release/Obj/TP_ELEC_NUM/nrfx_atomic.o: \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic.c \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic.h \
+Output/Release/Obj/TP_ELEC_NUM/spi.o: \
+ C:\Users\simon\Desktop\nordic\examples\TP_ELEC_NUM\TP_ELEC_NUM\pca10056\blank\ses\spi.c \
+ C:\Users\simon\Desktop\nordic\examples\TP_ELEC_NUM\TP_ELEC_NUM\pca10056\blank\ses\spi.h \
+ D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \
+ D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
+ ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
- D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stddef.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/__crossworks.h \
- D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \
  ../../../../../../modules/nrfx/mdk/nrf.h \
  ../../../../../../modules/nrfx/mdk/nrf52840.h \
  ../../../../../../components/toolchain/cmsis/include/core_cm4.h \
@@ -43,4 +44,10 @@ Output/Release/Obj/TP_ELEC_NUM/nrfx_atomic.o: \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
  ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic_internal.h
+ C:/Users/simon/Desktop/nRF5_SDK_17.1.0_ddde560/integration/nrfx/legacy/nrf_drv_spi.h \
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spim.h \
+ ../../../../../../modules/nrfx/hal/nrf_spim.h \
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spi.h \
+ ../../../../../../modules/nrfx/hal/nrf_spi.h \
+ ../../../../../../components/boards/boards.h \
+ ../../../../../../components/boards/pca10056.h

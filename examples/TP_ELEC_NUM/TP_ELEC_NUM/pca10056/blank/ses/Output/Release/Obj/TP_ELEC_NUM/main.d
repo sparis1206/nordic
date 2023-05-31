@@ -1,8 +1,8 @@
 Output/Release/Obj/TP_ELEC_NUM/main.o: \
- C:\Users\simon\Desktop\nRF5_SDK_17.1.0_ddde560\examples\TP_ELEC_NUM\TP_ELEC_NUM\main.c \
+ C:\Users\simon\Desktop\nordic\examples\TP_ELEC_NUM\TP_ELEC_NUM\main.c \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdbool.h \
  D:/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.68/include/stdint.h \
- ../../../../../../components/libraries/delay/nrf_delay.h \
+ ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
@@ -43,6 +43,11 @@ Output/Release/Obj/TP_ELEC_NUM/main.o: \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
  ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
+ C:/Users/simon/Desktop/nRF5_SDK_17.1.0_ddde560/integration/nrfx/legacy/nrf_drv_spi.h \
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spim.h \
+ ../../../../../../modules/nrfx/hal/nrf_spim.h \
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spi.h \
+ ../../../../../../modules/nrfx/hal/nrf_spi.h \
+ ../../../../../../components/libraries/delay/nrf_delay.h \
  ../../../../../../components/boards/boards.h \
- ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  ../../../../../../components/boards/pca10056.h

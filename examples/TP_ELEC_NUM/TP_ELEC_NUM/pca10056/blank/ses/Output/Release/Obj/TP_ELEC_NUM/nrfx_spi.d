@@ -1,6 +1,5 @@
-Output/Release/Obj/TP_ELEC_NUM/nrfx_atomic.o: \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic.c \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic.h \
+Output/Release/Obj/TP_ELEC_NUM/nrfx_spi.o: \
+ C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\nrfx_spi.c \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
@@ -42,5 +41,4 @@ Output/Release/Obj/TP_ELEC_NUM/nrfx_atomic.o: \
  ../../../../../../modules/nrfx/soc/nrfx_atomic.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
- ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:\Users\simon\Desktop\nordic\modules\nrfx\soc\nrfx_atomic_internal.h
+ ../../../../../../modules/nrfx/drivers/nrfx_errors.h
