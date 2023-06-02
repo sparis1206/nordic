@@ -55,12 +55,17 @@
 #include "nrf_delay.h"
 #include "boards.h"
 
-#define SPI_INSTANCE  0 /**< SPI instance index. */
+#define SPI_INSTANCE        0 /**< SPI instance index. */
+#define SPI_SS_PIN_INVERTED 28
+#define SPI_SCK_PIN 29
+#define SPI_MISO_PIN 31
+#define SPI_MOSI_PIN 30
+
 static const nrf_drv_spi_t spi = NRF_DRV_SPI_INSTANCE(SPI_INSTANCE);  /**< SPI instance. */
 static volatile bool spi_xfer_done;  /**< Flag used to indicate that SPI instance completed the transfer. */
 
-static uint8_t       m_tx_buf=0x03;    /**< TX buffer. */
-static uint8_t       m_rx_buf=0;    /**< RX buffer. */
+static uint8_t       m_tx_buf[2]={0x80,0x04};    /**< TX buffer. */
+static uint8_t       m_rx_buf[3]={0x00,0x00,0x00};    /**< RX buffer. */
 static const uint8_t m_length = sizeof(m_tx_buf);   /**< Transfer length. */
 
 void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
@@ -75,17 +80,35 @@ void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
                        void *                    p_context)
 {
     spi_xfer_done = true;
-    printf("Transfer completed : %d\n", (int)m_tx_buf);
-    if (m_rx_buf != 0)
+    nrf_gpio_pin_clear(SPI_SS_PIN_INVERTED);
+    printf("Transfer completed : %d\n", (int)(m_tx_buf[0]),(int)(m_tx_buf[1]));
+    if((m_tx_buf[0] == 0x80))
     {
-        printf("Received: %d\n", (int)m_rx_buf);
+        m_tx_buf[0]=0x00;
+        m_tx_buf[1]=0x00;
+    }
+    if((m_tx_buf[0] == 0x00) && (m_rx_buf[1]==0x04))
+    {
+        printf("Temperature sensor on !");
+        m_tx_buf[0]=0x02;
+    }
+    if ((m_rx_buf[0] != 0) || (m_rx_buf[1] != 0))
+    {
+        if(m_tx_buf[0]=0x02)
+        {
+          printf("Temp: %d,%d\n", (int)(m_rx_buf[1]), (int)(m_rx_buf[2]));
+        }
+        else
+        {
+                printf("Received: %d,%d,%d\n", (int)(m_rx_buf[0]), (int)(m_rx_buf[1]), (int)(m_rx_buf[2]));
+        }
     }
 }
 void init_spi(void)
 {
     /*init MISO MOSI SCK*/
     nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
-    spi_config.ss_pin   = SPI_SS_PIN;
+    spi_config.ss_pin   = NRF_DRV_SPI_PIN_NOT_USED;
     spi_config.miso_pin = SPI_MISO_PIN;
     spi_config.mosi_pin = SPI_MOSI_PIN;
     spi_config.sck_pin  = SPI_SCK_PIN;
@@ -102,20 +125,23 @@ void init_spi(void)
 int main(void)
 {
     /* Configure board. */
-    nrf_gpio_cfg_output(13);
+    //nrf_gpio_cfg_output(13);
+    nrf_gpio_cfg_output(SPI_SS_PIN_INVERTED);
     printf("BLINKAGE DE LED WOW\n");
     init_spi();
     printf("CONFIG SPI.");
     /* Toggle LEDs. */
     while (true)
     {
-        // Reset rx buffer and transfer done flag
-        m_rx_buf=0;
+        m_rx_buf[0] = 0;
+        m_rx_buf[1] = 0;
+        m_rx_buf[2] = 0;
         spi_xfer_done = false;
 
-        ret_code_t err_code = nrf_drv_spi_transfer(&spi, &m_tx_buf, 1, &m_rx_buf, 1);
+        nrf_gpio_pin_set(SPI_SS_PIN_INVERTED);
+        ret_code_t err_code = nrf_drv_spi_transfer(&spi, m_tx_buf, 2, m_rx_buf, 3);
         APP_ERROR_CHECK(err_code);
-
+        
         while (!spi_xfer_done)
         {
             __WFE();
