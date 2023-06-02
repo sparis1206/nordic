@@ -1,6 +1,5 @@
-Output/Release/Obj/TP_ELEC_NUM/nrf_drv_spi.o: \
- C:\Users\simon\Desktop\nordic\integration\nrfx\legacy\nrf_drv_spi.c \
- C:\Users\simon\Desktop\nordic\integration\nrfx\legacy\nrf_drv_spi.h \
+Output/Release/Obj/TP_ELEC_NUM/nrfx_twi.o: \
+ C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\nrfx_twi.c \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
@@ -42,8 +41,4 @@ Output/Release/Obj/TP_ELEC_NUM/nrf_drv_spi.o: \
  ../../../../../../modules/nrfx/soc/nrfx_atomic.h \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
- ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spim.h \
- ../../../../../../modules/nrfx/hal/nrf_spim.h \
- C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spi.h \
- ../../../../../../modules/nrfx/hal/nrf_spi.h
+ ../../../../../../modules/nrfx/drivers/nrfx_errors.h

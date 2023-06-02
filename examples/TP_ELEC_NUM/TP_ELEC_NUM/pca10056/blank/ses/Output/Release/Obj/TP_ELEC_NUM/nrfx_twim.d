@@ -1,5 +1,5 @@
-Output/Release/Obj/TP_ELEC_NUM/nrfx_spim.o: \
- C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\nrfx_spim.c \
+Output/Release/Obj/TP_ELEC_NUM/nrfx_twim.o: \
+ C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\nrfx_twim.c \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
  ../../../../../../modules/nrfx/drivers/nrfx_common.h \
@@ -42,10 +42,11 @@ Output/Release/Obj/TP_ELEC_NUM/nrfx_spim.o: \
  ../../../../../../components/libraries/util/sdk_errors.h \
  ../../../../../../components/libraries/util/sdk_resources.h \
  ../../../../../../modules/nrfx/drivers/nrfx_errors.h \
- C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_spim.h \
- ../../../../../../modules/nrfx/hal/nrf_spim.h \
- C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\prs/nrfx_prs.h \
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_twim.h \
+ C:/Users/simon/Desktop/nordic/modules/nrfx/drivers/include/nrfx_twi_twim.h \
+ ../../../../../../modules/nrfx/hal/nrf_twim.h \
  ../../../../../../modules/nrfx/hal/nrf_gpio.h \
+ C:\Users\simon\Desktop\nordic\modules\nrfx\drivers\src\prs/nrfx_prs.h \
  ../../../../../../integration/nrfx/nrfx_log.h \
  ../../../../../../components/libraries/log/nrf_log.h \
  ../../../../../../components/libraries/util/sdk_common.h \

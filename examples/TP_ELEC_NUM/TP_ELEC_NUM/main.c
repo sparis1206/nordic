@@ -48,105 +48,117 @@
  *
  */
 
+#include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include "nrf_gpio.h"
-#include "nrf_drv_spi.h"
-#include "nrf_delay.h"
+#include "app_error.h"
+#include "app_util_platform.h"
 #include "boards.h"
+#include "nrf_gpio.h"
+#include "nrf_delay.h"
+#include "nrf_drv_twi.h"
 
-#define SPI_INSTANCE        0 /**< SPI instance index. */
-#define SPI_SS_PIN_INVERTED 28
-#define SPI_SCK_PIN 29
-#define SPI_MISO_PIN 31
-#define SPI_MOSI_PIN 30
+/* PIN Definition */
+#define TWI_SCL_PIN 26
+#define TWI_SDA_PIN 27
+/* SLAVE Adress*/
+#define MCP_ADDR 0x18
+/* TWI instance ID. */
+#define TWI_INSTANCE_ID     0
 
-static const nrf_drv_spi_t spi = NRF_DRV_SPI_INSTANCE(SPI_INSTANCE);  /**< SPI instance. */
-static volatile bool spi_xfer_done;  /**< Flag used to indicate that SPI instance completed the transfer. */
-
-static uint8_t       m_tx_buf[2]={0x80,0x04};    /**< TX buffer. */
-static uint8_t       m_rx_buf[3]={0x00,0x00,0x00};    /**< RX buffer. */
-static const uint8_t m_length = sizeof(m_tx_buf);   /**< Transfer length. */
-
-void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
-                       void *                    p_context);
-void init_spi(void);
+/* Indicates if operation on TWI has ended. */
+static volatile bool m_xfer_done = false;
+/* TWI instance. */
+static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
+/* Buffer for samples read from temperature sensor. */
+static uint8_t m_sample[2];
 
 /**
- * @brief SPI user event handler.
- * @param event
+ * @brief Function for setting active mode on MMA7660 accelerometer.
  */
-void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
-                       void *                    p_context)
+void MCP_set_mode(void)
 {
-    spi_xfer_done = true;
-    nrf_gpio_pin_clear(SPI_SS_PIN_INVERTED);
-    printf("Transfer completed : %d\n", (int)(m_tx_buf[0]),(int)(m_tx_buf[1]));
-    if((m_tx_buf[0] == 0x80))
-    {
-        m_tx_buf[0]=0x00;
-        m_tx_buf[1]=0x00;
-    }
-    if((m_tx_buf[0] == 0x00) && (m_rx_buf[1]==0x04))
-    {
-        printf("Temperature sensor on !");
-        m_tx_buf[0]=0x02;
-    }
-    if ((m_rx_buf[0] != 0) || (m_rx_buf[1] != 0))
-    {
-        if(m_tx_buf[0]=0x02)
-        {
-          printf("Temp: %d,%d\n", (int)(m_rx_buf[1]), (int)(m_rx_buf[2]));
-        }
-        else
-        {
-                printf("Received: %d,%d,%d\n", (int)(m_rx_buf[0]), (int)(m_rx_buf[1]), (int)(m_rx_buf[2]));
-        }
-    }
-}
-void init_spi(void)
-{
-    /*init MISO MOSI SCK*/
-    nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
-    spi_config.ss_pin   = NRF_DRV_SPI_PIN_NOT_USED;
-    spi_config.miso_pin = SPI_MISO_PIN;
-    spi_config.mosi_pin = SPI_MOSI_PIN;
-    spi_config.sck_pin  = SPI_SCK_PIN;
-    spi_config.frequency = NRF_DRV_SPI_FREQ_125K;
-    spi_config.mode = NRF_DRV_SPI_MODE_1;
+    ret_code_t err_code;
 
-    ret_code_t err_code = nrf_drv_spi_init(&spi, &spi_config, spi_event_handler, NULL);
+    /* Desactive shutdown */
+    uint8_t config[3] = {0x01, 0x00, 0x00};
+    err_code = nrf_drv_twi_tx(&m_twi, MCP_ADDR, config, 3, false);
     APP_ERROR_CHECK(err_code);
+    while (m_xfer_done == false);
+}
+
+
+
+/**
+ * @brief TWI events handler.
+ */
+void twi_handler(nrf_drv_twi_evt_t const * p_event, void * p_context)
+{
+    switch (p_event->type)
+    {
+        case NRF_DRV_TWI_EVT_DONE:
+            m_xfer_done = true;
+            break;
+        default:
+            break;
+    }
 }
 
 /**
- * @brief Function for application main entry.
+ * @brief UART initialization.
  */
+void twi_init (void)
+{
+    nrf_gpio_cfg_input(TWI_SCL_PIN, NRF_GPIO_PIN_PULLUP);
+    nrf_gpio_cfg_input(TWI_SDA_PIN, NRF_GPIO_PIN_PULLUP);
+    const nrf_drv_twi_config_t twi_config = {
+       .scl                = TWI_SCL_PIN,
+       .sda                = TWI_SDA_PIN,
+       .frequency          = NRF_DRV_TWI_FREQ_100K,
+       .interrupt_priority = APP_IRQ_PRIORITY_HIGH,
+       .clear_bus_init     = false
+    };
+
+    ret_code_t err_code = nrf_drv_twi_init(&m_twi, &twi_config, twi_handler, NULL);
+    APP_ERROR_CHECK(err_code);
+
+    nrf_drv_twi_enable(&m_twi);
+}
+
+/**
+ * @brief Function for reading data from temperature sensor.
+ */
+static void read_sensor_data()
+{
+    m_xfer_done = false;
+    uint8_t data_tx[1] = {0x05};
+    ret_code_t err_code = nrf_drv_twi_tx(&m_twi, MCP_ADDR, data_tx, sizeof(data_tx), true);
+    APP_ERROR_CHECK(err_code);
+    while(!m_xfer_done);
+    m_xfer_done = false;
+    /* Read 1 byte from the specified address - skip 3 bits dedicated for fractional part of temperature. */
+    err_code = nrf_drv_twi_rx(&m_twi, MCP_ADDR, m_sample, sizeof(m_sample));
+    APP_ERROR_CHECK(err_code);
+    while(!m_xfer_done);
+    printf("Temperature : %d-%d\n", m_sample[0], m_sample[1]);
+}
+
 int main(void)
 {
+    printf("\nTWI sensor example started.");
     /* Configure board. */
-    //nrf_gpio_cfg_output(13);
-    nrf_gpio_cfg_output(SPI_SS_PIN_INVERTED);
-    printf("BLINKAGE DE LED WOW\n");
-    init_spi();
-    printf("CONFIG SPI.");
-    /* Toggle LEDs. */
+    twi_init();
+    MCP_set_mode();
+    printf("Config MCP completed.");
     while (true)
     {
-        m_rx_buf[0] = 0;
-        m_rx_buf[1] = 0;
-        m_rx_buf[2] = 0;
-        spi_xfer_done = false;
-
-        nrf_gpio_pin_set(SPI_SS_PIN_INVERTED);
-        ret_code_t err_code = nrf_drv_spi_transfer(&spi, m_tx_buf, 2, m_rx_buf, 3);
-        APP_ERROR_CHECK(err_code);
-        
-        while (!spi_xfer_done)
+        do
         {
             __WFE();
-        }
-        nrf_delay_ms(10);
+        }while (m_xfer_done == false);
+
+        read_sensor_data();
+        nrf_delay_ms(200);
     }
 }
 
